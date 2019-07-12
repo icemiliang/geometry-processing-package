@@ -33,15 +33,28 @@ bd = bd([i:end,1:i]);
 corner = corner([1:end,1],:);
 
 ck = zeros(size(corner,1),1);
-k = 1;
-for i = 1:length(bd)
-    if(bd(i) == corner(k))
-        ck(k) = i;
-        k = k+1;
-    end
-end
 
-uvbd = zeros(nbd,2);
+% ck(1) = 1;
+% ck(2) = 41;
+% ck(3) = 99;
+% ck(4) = 170;
+% ck(5) = size(bd, 1);
+
+for k = 1:size(corner, 1)-1
+   ck(k) =  find(bd==corner(k), 1, "first");
+end
+ck(k+1) = size(bd,1);
+
+
+% k = 1;
+% for i = 1:length(bd)
+%     if(bd(i) == corner(k))
+%         ck(k) = i;
+%         k = k+1;
+%     end
+% end
+
+uvbd = zeros(nbd+1,2);
 if size(corner,2) == 2 || size(corner,2) == 3    
     if size(corner,2) == 3
         zc = corner(:,2)+1i*corner(:,3);
